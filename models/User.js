@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const UserSchema = mongoose.Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },
@@ -17,6 +22,14 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  expiredAt: {
+    type: String,
+    default: moment().format('DD/MM/YYYY'),
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
   date: {
     type: Date,
