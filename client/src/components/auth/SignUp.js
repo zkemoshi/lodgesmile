@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Avatar,
   Button,
@@ -9,24 +9,75 @@ import {
   Box,
   Container,
   Typography,
+  InputAdornment,
+  IconButton,
+  FormControl,
+  OutlinedInput,
+  InputLabel,
 } from '@mui/material';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import alertContext from '../../context/alert/alertContext';
+import authContext from '../../context/auth/authContext';
+import Alerts from '../layout/Alerts';
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+const SignUp = () => {
+  const { setAlert } = useContext(alertContext);
+  const { register, error, clearErrors, isAuthenticated } =
+    useContext(authContext);
+  const history = useHistory();
+
+  // Use Effects
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/auth/home');
+    }
+    if (error === 'User already exists') {
+      setAlert(error, 'error', 2000);
+      clearErrors();
+    }
+    //eslint-disable-next-line
+  }, [error, isAuthenticated, history]);
+
+  const [formInput, setFormInput] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    showPassword: false,
+  });
+
+  const { firstName, lastName, email, phone, password, showPassword } =
+    formInput;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
     });
   };
 
+  const handleClickShowPassword = () => {
+    setFormInput({
+      ...formInput,
+      showPassword: !showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component='main' maxWidth='xs'>
@@ -61,6 +112,10 @@ export default function SignUp() {
                   id='firstName'
                   label='First Name'
                   autoFocus
+                  value={firstName}
+                  onChange={(e) =>
+                    setFormInput({ ...formInput, firstName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -71,6 +126,10 @@ export default function SignUp() {
                   label='Last Name'
                   name='lastName'
                   autoComplete='family-name'
+                  value={lastName}
+                  onChange={(e) =>
+                    setFormInput({ ...formInput, lastName: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -81,6 +140,10 @@ export default function SignUp() {
                   label='Email Address'
                   name='email'
                   autoComplete='email'
+                  value={email}
+                  onChange={(e) =>
+                    setFormInput({ ...formInput, email: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -90,19 +153,46 @@ export default function SignUp() {
                   id='phone'
                   label='Mobile'
                   name='phone'
-                  autoComplete='phone'
+                  value={phone}
+                  onChange={(e) =>
+                    setFormInput({ ...formInput, phone: e.target.value })
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='new-password'
-                />
+                <FormControl variant='outlined' sx={{ width: '100%' }}>
+                  <InputLabel htmlFor='outlined-adornment-password'>
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    required
+                    fullWidth
+                    name='password'
+                    label='Password'
+                    type={showPassword ? 'text' : 'password'}
+                    id='outlined-adornment-password'
+                    value={password}
+                    onChange={(e) =>
+                      setFormInput({ ...formInput, password: e.target.value })
+                    }
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge='end'
+                        >
+                          {showPassword ? (
+                            <VisibilityOffIcon />
+                          ) : (
+                            <VisibilityIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <typography variant='body2'>
@@ -132,4 +222,6 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignUp;
