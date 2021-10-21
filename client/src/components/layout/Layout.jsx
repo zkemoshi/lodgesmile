@@ -100,6 +100,11 @@ const Layout = ({ children }) => {
       path: '/auth/dashboard',
     },
     {
+      text: 'Admin',
+      icon: <AssessmentIcon color='primary' />,
+      path: '/admin',
+    },
+    {
       text: 'Logout',
       icon: <LogoutIcon color='primary' />,
       path: '/auth/logout',
