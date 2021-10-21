@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const emailKey = config.get('SENDGRID_API_KEY');
 const sgMail = require('@sendgrid/mail');
-const auth = require('../middleware/auth');
 
 const { body, validationResult } = require('express-validator');
 
@@ -16,7 +15,7 @@ const User = require('../models/User');
 // @desc    Register a user
 // @access  Public
 router.post('/', async (req, res) => {
-  const { firstName, lastName, email, phone, password } = req.body;
+  const { firstName, lastName, phone, password, email } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -47,7 +46,7 @@ router.post('/', async (req, res) => {
     const msg = {
       to: `zkemoshi@gmail.com`,
       from: 'sales@codewithzaka.online',
-      subject: `Thank Your ${name} for registering with Us`,
+      subject: `Thank Your ${firstName} for registering with Us`,
       html: `Your Email is ${email} and phone number ${phone}`,
     };
 

@@ -90,6 +90,7 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
+          <Alerts />
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -125,7 +126,6 @@ const SignUp = () => {
                   id='lastName'
                   label='Last Name'
                   name='lastName'
-                  autoComplete='family-name'
                   value={lastName}
                   onChange={(e) =>
                     setFormInput({ ...formInput, lastName: e.target.value })
@@ -139,7 +139,6 @@ const SignUp = () => {
                   id='email'
                   label='Email Address'
                   name='email'
-                  autoComplete='email'
                   value={email}
                   onChange={(e) =>
                     setFormInput({ ...formInput, email: e.target.value })

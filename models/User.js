@@ -25,7 +25,7 @@ const UserSchema = mongoose.Schema({
   },
   expiredAt: {
     type: String,
-    default: moment().format('DD/MM/YYYY'),
+    default: moment().format('DD-MM-YYYY'),
   },
   isAdmin: {
     type: Boolean,
