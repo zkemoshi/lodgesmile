@@ -85,19 +85,9 @@ const Layout = ({ children }) => {
 
   const menuItems = [
     {
-      text: 'Create Receipt',
-      icon: <SubjectOutlined color='secondary' />,
-      path: '/auth/home',
-    },
-    {
-      text: 'View Receipts',
-      icon: <ReceiptIcon color='primary' />,
-      path: '/auth/viewReceipts',
-    },
-    {
-      text: 'Add Accounts',
+      text: 'Home',
       icon: <AddCircleOutlineOutlined color='primary' />,
-      path: '/auth/stores',
+      path: '/auth/home',
     },
     {
       text: 'Pricing',
@@ -165,14 +155,14 @@ const Layout = ({ children }) => {
           >
             <Grid item xs={12} md={6}>
               <Typography className={classes.date}>
-                {openDrawer ? '' : <>{moment().format('MMM Do YY')}</>}
+                {openDrawer ? '' : <>{moment().format('MMM Do, YY')}</>}
                 <Chip
                   avatar={
                     <Avatar
                       sx={{ backgroundColor: '#f3f3f3', fontWeight: 'bold' }}
                     >
                       {user &&
-                        moment(user.expiredAt, 'DD MM YYYY').diff(
+                        moment(user.expiredAt, 'DD-MM-YYYY').diff(
                           moment(),
                           'days'
                         )}
@@ -180,18 +170,18 @@ const Layout = ({ children }) => {
                   }
                   label={
                     user &&
-                    moment(user.expiredAt, 'DD MM YYYY').diff(
+                    moment(user.expiredAt, 'DD-MM-YYYY').diff(
                       moment(),
                       'days'
                     ) > 0
-                      ? `Days (${user.scheme})`
+                      ? `Days`
                       : 'Inactive'
                   }
                 />
               </Typography>
             </Grid>
             <Grid item xs={12} md={6} align='right'>
-              <Typography>Welcome, {user && user.name}</Typography>
+              <Typography>Welcome, {user && user.lastName}</Typography>
             </Grid>
           </Grid>
         </Toolbar>

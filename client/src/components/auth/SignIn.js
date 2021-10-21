@@ -1,5 +1,9 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
+import { Link, useHistory } from 'react-router-dom';
+import Alerts from '../layout/Alerts';
 import {
   Avatar,
   Button,
@@ -19,15 +23,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function SignIn() {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+  const history = useHistory();
 
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const { setAlert } = alertContext;
+  const { login, error, clearErrors, token } = authContext;
+
+  useEffect(() => {
+    if (token) {
+      history.push('/auth/home');
+    }
+    if (error === 'Invalid Credentials') {
+      setAlert(error, 'error', 2000);
+      clearErrors();
+    }
+    //eslint-disable-next-line
+  }, [error, token]);
+
+  const [User, setUser] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = User;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    login({
+      email,
+      password,
     });
   };
 
@@ -37,12 +62,13 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 7,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
+          <Alerts />
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -64,6 +90,8 @@ export default function SignIn() {
               name='email'
               autoComplete='email'
               autoFocus
+              value={email}
+              onChange={(e) => setUser({ ...User, email: e.target.value })}
             />
             <TextField
               margin='normal'
@@ -74,6 +102,8 @@ export default function SignIn() {
               type='password'
               id='password'
               autoComplete='current-password'
+              value={password}
+              onChange={(e) => setUser({ ...User, password: e.target.value })}
             />
             <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}

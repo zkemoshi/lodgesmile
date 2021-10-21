@@ -15,3 +15,11 @@ export const PASSWORD_SUCCESS = 'PASSWORD_SUCCESS';
 export const PASSWORD_FAIL = 'PASSWORD_FAIL';
 export const EMAIL_SUCCESS = 'EMAIL_SUCCESS';
 export const EMAIL_FAIL = 'EMAIL_FAIL';
+
+// Payments
+// PAYMENTS - flutter wave..
+export const ADD_PAYMENT = 'ADD_PAYMENT';
+export const GET_PAYMENT = 'GET_PAYMENT';
+export const CLEAR_PAYMENT = 'CLEAR_PAYMENT';
+export const FILTER_PAYMENTS = 'FILTER_PAYMENTS';
+export const PAYMENT_ERROR = 'PAYMENT_ERROR';

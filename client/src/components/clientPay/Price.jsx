@@ -61,7 +61,7 @@ const Price = ({ amount, scheme }) => {
             <Change getCount={getCount} />
           </Typography>
         </Paper>
-        <Typography>Unlimited Receipts</Typography>
+        <Typography>Unlimited </Typography>
         <Typography>{scheme}</Typography>
         <Typography>24/7 Support</Typography>
         <Typography>Reports Access</Typography>

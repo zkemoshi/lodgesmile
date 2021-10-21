@@ -77,8 +77,9 @@ const Invoice = () => {
 
           <Paper variant='outlined' className={classes.bill}>
             <Typography variant='h6'>Bill To:</Typography>
-            <Typography>{user && `${user.business}`}</Typography>
-            <Typography>{user && `Tin: ${user.tin}`}</Typography>
+            <Typography>
+              {user && `${user.firstName} ${user.lastName}`}
+            </Typography>
             <Typography>{user && `Email: ${user.email}`}</Typography>
             <Typography>{user && `Mobile: ${user.phone}`}</Typography>
           </Paper>

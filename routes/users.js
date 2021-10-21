@@ -6,8 +6,6 @@ const config = require('config');
 const emailKey = config.get('SENDGRID_API_KEY');
 const sgMail = require('@sendgrid/mail');
 
-const { body, validationResult } = require('express-validator');
-
 // User Model
 const User = require('../models/User');
 
@@ -38,35 +36,14 @@ router.post('/', async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
 
     // Save to DB
-    user = await user.save();
-
-    // Sending Email after Registering
-
-    sgMail.setApiKey(emailKey);
-    const msg = {
-      to: `zkemoshi@gmail.com`,
-      from: 'sales@codewithzaka.online',
-      subject: `Thank Your ${firstName} for registering with Us`,
-      html: `Your Email is ${email} and phone number ${phone}`,
-    };
-
-    sgMail
-      .send(msg)
-      .then(() => {
-        console.log('Email sent');
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    const { id, email, expiredAt } = user;
+    await user.save();
 
     // JWT Payload
     const payload = {
       user: {
-        id,
-        email,
-        expiredAt,
+        id: user.id,
+        email: user.email,
+        expiredAt: user.expiredAt,
       },
     };
 

@@ -7,20 +7,20 @@ const Pricing = () => {
     amount: 15000,
     scheme: '1 - 5 Outlets',
   };
-  const planB = {
-    amount: 60000,
-    scheme: '1 - 10 Outlets',
-  };
-  const planC = {
-    amount: 100000,
-    scheme: '1 - 15 Outlets',
-  };
+  // const planB = {
+  //   amount: 60000,
+  //   scheme: '1 - 10 Outlets',
+  // };
+  // const planC = {
+  //   amount: 100000,
+  //   scheme: '1 - 15 Outlets',
+  // };
 
   return (
     <Container>
       <Price amount={planA.amount} scheme={planA.scheme} />
-      <Price amount={planB.amount} scheme={planB.scheme} />
-      <Price amount={planC.amount} scheme={planC.scheme} />
+      {/* <Price amount={planB.amount} scheme={planB.scheme} />
+      <Price amount={planC.amount} scheme={planC.scheme} /> */}
     </Container>
   );
 };

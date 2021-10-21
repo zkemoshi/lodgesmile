@@ -63,6 +63,7 @@ const AuthState = (props) => {
 
   //Login User
   const login = async (formData) => {
+    console.log(formData);
     const config = {
       headers: {
         'Content-Type': 'application/json',

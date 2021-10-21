@@ -28,12 +28,12 @@ router.post('/', async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ msg: 'Invalid Credentials' });
     }
-    const { id, email, expiredAt } = user;
+
     const payload = {
       user: {
-        id,
-        email,
-        expiredAt,
+        id: user.id,
+        email: user.email,
+        expiredAt: user.expiredAt,
       },
     };
 
