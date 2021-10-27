@@ -1,5 +1,5 @@
 {
-  "mongoURI":"mongodb://zkemoshi:Kiswahili1@zcapps-shard-00-00.xxbvp.mongodb.net:27017,zcapps-shard-00-01.xxbvp.mongodb.net:27017,zcapps-shard-00-02.xxbvp.mongodb.net:27017/nodeJsStarter?ssl=true&replicaSet=atlas-yxpgzj-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "mongoURI":"mongodb://zkemoshi:Kiswahili1@zcapps-shard-00-00.xxbvp.mongodb.net:27017,zcapps-shard-00-01.xxbvp.mongodb.net:27017,zcapps-shard-00-02.xxbvp.mongodb.net:27017/lodgesmile?ssl=true&replicaSet=atlas-yxpgzj-shard-0&authSource=admin&retryWrites=true&w=majority",
   "jwtSecret":"secret",
   "SENDGRID_API_KEY":"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"
 }
