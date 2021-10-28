@@ -10,6 +10,9 @@ import AuthPages from './components/pages/AuthPages';
 import PaymentState from './context/payment/PaymentState';
 import Dashboard from './components/admin/Dashboard';
 import AdminState from './context/admin/AdminState';
+import AttendantState from './context/attendant/AttendantState';
+import Privacy from './components/pages/Privacy';
+import Terms from './components/pages/Terms';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -20,12 +23,16 @@ const App = () => {
       <AlertState>
         <PaymentState>
           <AdminState>
-            <Switch>
-              <PrivateRoute path='/auth' component={AuthPages} />
-              <PrivateRoute path='/admin' component={Dashboard} />
-              <Route exact path='/' component={SignIn} />
-              <Route exact path='/register' component={SignUp} />
-            </Switch>
+            <AttendantState>
+              <Switch>
+                <PrivateRoute path='/auth' component={AuthPages} />
+                <PrivateRoute path='/admin' component={Dashboard} />
+                <Route exact path='/' component={SignIn} />
+                <Route exact path='/register' component={SignUp} />
+                <Route exact path='/privacy' component={Privacy} />
+                <Route exact path='/terms' component={Terms} />
+              </Switch>
+            </AttendantState>
           </AdminState>
         </PaymentState>
       </AlertState>

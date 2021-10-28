@@ -90,6 +90,16 @@ const Layout = ({ children }) => {
       path: '/auth/home',
     },
     {
+      text: 'Create Room',
+      icon: <AddCircleOutlineOutlined color='primary' />,
+      path: '/auth/rooms',
+    },
+    {
+      text: 'Attendant',
+      icon: <AddCircleOutlineOutlined color='primary' />,
+      path: '/auth/attendant',
+    },
+    {
       text: 'Pricing',
       icon: <AssessmentIcon color='primary' />,
       path: '/auth/pricing',

@@ -113,11 +113,12 @@ export default function SignIn() {
               type='submit'
               fullWidth
               variant='contained'
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2.5, mb: 3.5 }}
             >
               Sign In
             </Button>
-            <Grid container>
+
+            <Grid container spacing={1}>
               <Grid item xs>
                 <Link to='/' variant='body2'>
                   Forgot password?
