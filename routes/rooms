@@ -27,7 +27,6 @@ router.get('/', auth, async (req, res) => {
 // @desc    Add new room
 // @access  Private
 router.post('/', auth, async (req, res) => {
-  
   const { name, number, price } = req.body;
 
   try {
@@ -64,7 +63,8 @@ router.put('/:id', auth, async (req, res) => {
 
     if (!room) return res.status(404).json({ msg: 'Room not found' });
 
-    // Make sure user owns contact
+    // Make sure user owns room
+
     if (room.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
@@ -83,7 +83,7 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 // @route   DELETE    api/rooms/:id
-// @desc    Delete contact
+// @desc    Delete
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
   try {
