@@ -19,10 +19,11 @@ import {
 // Initial State
 const RoomState = (props) => {
   const InitialState = {
-    rooms: null,
+    rooms: [],
     current: null,
     filtered: null,
     error: null,
+    loading: true,
   };
 
   const [state, dispatch] = useReducer(roomReducer, InitialState);
@@ -57,6 +58,7 @@ const RoomState = (props) => {
         payload: res.data,
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: ROOM_ERROR,
         payload: error.response.msg,

@@ -51,8 +51,9 @@ const Price = ({ amount, scheme }) => {
   return (
     <Card raised className={classes.box}>
       <CardHeader
-        title={`TZS ${numeral(price).format('0,0')}`}
+        title={`TZS ${numeral(price).format('0,0')} `}
         className={classes.header}
+        subheader={`(50% Offer)`}
       />
       <CardContent className={classes.content}>
         <Paper elevation={0} className={classes.change}>
@@ -61,10 +62,10 @@ const Price = ({ amount, scheme }) => {
             <Change getCount={getCount} />
           </Typography>
         </Paper>
-        <Typography>Unlimited </Typography>
-        <Typography>{scheme}</Typography>
+        <Typography>Unlimited Access </Typography>
+        <Typography></Typography>
         <Typography>24/7 Support</Typography>
-        <Typography>Reports Access</Typography>
+        <Typography>Reportings</Typography>
       </CardContent>
       <CardActions className={classes.action}>
         <Button
@@ -75,7 +76,7 @@ const Price = ({ amount, scheme }) => {
             history.push('/auth/invoice');
           }}
         >
-          Pay Now
+          Get Invoice
         </Button>
       </CardActions>
     </Card>

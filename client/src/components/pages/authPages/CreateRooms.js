@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 // import StoreFilter from '../../components/stores/StoreFilter';
 import authContext from '../../../context/auth/authContext';
 import { Button } from '@material-ui/core';
-import AttendantRegister from '../../attendant/AttendantRegister';
 import Attendants from '../../attendant/Attendants';
 import RoomRegister from '../../rooms/RoomRegister';
 import Rooms from '../../rooms/Rooms';
@@ -42,7 +41,7 @@ const CreateRooms = () => {
       </Button>
       <RoomRegister />
       {/* <StoreFilter /> */}
-      {/* <Rooms /> */}
+      <Rooms />
     </Container>
   );
 };

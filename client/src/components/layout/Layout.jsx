@@ -18,8 +18,6 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { deepOrange, deepPurple } from '@mui/material/colors';
-
 import moment from 'moment';
 
 import authContext from '../../context/auth/authContext';

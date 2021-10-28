@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core';
 import { Button, TextField, Typography } from '@mui/material';
 import React, { useContext, useState, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
-import AttendantContext from '../../context/attendant/attendantContext';
 import Alerts from '../layout/Alerts';
+import roomContext from '../../context/room/roomContext';
 import NumberFormat from 'react-number-format';
 
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
@@ -43,19 +43,17 @@ const btnSytle = {
 
 const RoomRegister = (props) => {
   const classes = useStyle();
-  const alertContext = useContext(AlertContext);
-  const attendantContext = useContext(AttendantContext);
 
-  const { setAlert } = alertContext;
+  const { setAlert } = useContext(AlertContext);
   const {
     current,
     clearCurrent,
-    updateAttendant,
-    attendants,
-    addAttendant,
+    updateRoom,
+    rooms,
+    addRoom,
     error,
     clearErrors,
-  } = attendantContext;
+  } = useContext(roomContext);
 
   const [room, setRoom] = useState({
     name: '',
@@ -74,7 +72,7 @@ const RoomRegister = (props) => {
       });
     }
     //eslint-disable-next-line
-  }, [error, current, attendants]);
+  }, [error, current, rooms]);
 
   const { name, number, price } = room;
 
@@ -82,9 +80,9 @@ const RoomRegister = (props) => {
     e.preventDefault();
 
     if (current !== null) {
-      updateAttendant(room);
+      updateRoom(room);
     } else {
-      addAttendant({
+      addRoom({
         name,
         number,
         price,
@@ -111,7 +109,7 @@ const RoomRegister = (props) => {
           required
           id='standard-basic'
           label='Name'
-          placeholder='Enter account name'
+          placeholder='Enter room name'
           onChange={(e) => setRoom({ ...room, name: e.target.value })}
         />
 
@@ -137,6 +135,7 @@ const RoomRegister = (props) => {
           variant='standard'
           label='Price'
           color='primary'
+          placeholder='Enter Room Price'
           fullWidth
           required
         />

@@ -11,7 +11,7 @@ import {
   CLEAR_ROOMS,
 } from '../types';
 
-export default (state, action) => {
+const RoomReducer = (state, action) => {
   switch (action.type) {
     case GET_ROOM:
       return {
@@ -47,6 +47,7 @@ export default (state, action) => {
         filtered: null,
         error: null,
         current: null,
+        loading: true,
       };
     case SET_CURRENT:
       return {
@@ -80,3 +81,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default RoomReducer;

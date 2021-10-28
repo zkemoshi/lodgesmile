@@ -4,7 +4,7 @@ import Price from '../../clientPay/Price';
 
 const Pricing = () => {
   const planA = {
-    amount: 15000,
+    amount: 5000,
     scheme: '1 - 5 Outlets',
   };
   // const planB = {

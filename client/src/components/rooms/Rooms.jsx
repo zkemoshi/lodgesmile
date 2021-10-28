@@ -1,26 +1,24 @@
 import { CircularProgress, Typography } from '@mui/material';
 import React, { Fragment, useContext, useEffect } from 'react';
-import AttendantContext from '../../context/attendant/attendantContext';
+import roomContext from '../../context/room/roomContext';
 import AttendantItem from './RoomsItems';
 
 const Rooms = () => {
-  const attendantContext = useContext(AttendantContext);
-
-  const { attendants, getAttendants, loading } = attendantContext;
+  const { rooms, getRooms, loading } = useContext(roomContext);
 
   useEffect(() => {
-    getAttendants();
+    getRooms();
     //eslint-disable-next-line
   }, []);
 
   return (
     <Fragment>
-      {attendants !== null && !loading ? (
+      {rooms !== null && !loading ? (
         <>
-          <Typography align='center'> Attendant Lists </Typography>
+          <Typography align='center'> List of Rooms </Typography>
 
-          {attendants.map((attendant) => (
-            <AttendantItem key={attendant._id} attendant={attendant} />
+          {rooms.map((room) => (
+            <AttendantItem key={room._id} room={room} />
           ))}
         </>
       ) : (

@@ -6,11 +6,12 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useContext } from 'react';
-import AttendantContext from '../../context/attendant/attendantContext';
+import roomContext from '../../context/room/roomContext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { makeStyles } from '@material-ui/styles';
+import numeral from 'numeral';
 
 const useStyle = makeStyles({
   username: {
@@ -24,12 +25,11 @@ const useStyle = makeStyles({
   },
 });
 
-const RoomsItems = ({ attendant }) => {
+const RoomsItems = ({ room }) => {
   const classes = useStyle();
-  const attendantContext = useContext(AttendantContext);
 
-  const { deleteAttendant, setCurrent } = attendantContext;
-  const { _id, name, username, password } = attendant;
+  const { deleteRoom, setCurrent } = useContext(roomContext);
+  const { _id, name, price, number } = room;
 
   return (
     <>
@@ -44,11 +44,11 @@ const RoomsItems = ({ attendant }) => {
         <AccordionDetails>
           <Grid>
             <Typography>
-              <span className={classes.username}>Username:</span>
-              {username}
+              <span className={classes.username}>Price: TZS </span>
+              {numeral(price).format('0,0')}
             </Typography>
             <Typography>
-              <span className={classes.password}>Password:</span> {password}
+              <span className={classes.password}>Room Number:</span> {number}
             </Typography>
           </Grid>
           <Grid>
@@ -57,13 +57,13 @@ const RoomsItems = ({ attendant }) => {
                 color='success'
                 button
                 className={classes.cursor}
-                onClick={() => setCurrent(attendant)}
+                onClick={() => setCurrent(room)}
               />
               <DeleteIcon
                 color='error'
                 button
                 className={classes.cursor}
-                onClick={() => deleteAttendant(_id)}
+                onClick={() => deleteRoom(_id)}
               />
             </Typography>
           </Grid>

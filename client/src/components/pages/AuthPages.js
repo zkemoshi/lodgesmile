@@ -6,6 +6,7 @@ import Home from './authPages/Home';
 import Pricing from './authPages/Pricing';
 import Account from './authPages/Account';
 import CreateRooms from './authPages/CreateRooms';
+import PaymentSuccess from '../clientPay/PaymentSuccess';
 
 const AuthPages = ({ match }) => {
   return (
@@ -16,6 +17,11 @@ const AuthPages = ({ match }) => {
         <Route exact path={`${match.url}/attendant`} component={Account} />
         <Route exact path={`${match.url}/pricing`} component={Pricing} />
         <Route exact path={`${match.url}/invoice`} component={Invoice} />
+        <Route
+          exact
+          path={`${match.url}/paymentSuccess`}
+          component={PaymentSuccess}
+        />
       </Switch>
     </Layout>
   );

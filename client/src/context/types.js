@@ -31,3 +31,12 @@ export const CLEAR_ATTENDANTS = 'CLEAR_ATTENDANTS';
 export const ATTENDANT_ERROR = 'ATTENDANT_ERROR';
 export const DELETE_ATTENDANT = 'DELETE_ATTENDANT';
 export const UPDATE_ATTENDANT = 'UPDATE_ATTENDANT';
+
+//Rooms
+export const ADD_ROOM = 'ADD_ROOM';
+export const GET_ROOM = 'GET_ROOM';
+export const CLEAR_ROOMS = 'CLEAR_ROOMS';
+export const ROOM_ERROR = 'ROOM_ERROR';
+export const DELETE_ROOM = 'DELETE_ROOM';
+export const UPDATE_ROOM = 'UPDATE_ROOM';
+export const FILTER_ROOMS = 'FILTER_ROOMS';

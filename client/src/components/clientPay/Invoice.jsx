@@ -153,7 +153,7 @@ const Invoice = () => {
           variant='outlined'
           onClick={() => {
             addPayment(current);
-            history.push('/auth/home');
+            history.push('/auth/paymentSuccess');
           }}
         >
           Pay Now

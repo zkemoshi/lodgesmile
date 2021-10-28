@@ -27,7 +27,6 @@ const PaymentState = (props) => {
   //Add Payment
   const addPayment = async (payment) => {
     const { price, days, scheme } = payment;
-    console.log(payment);
 
     try {
       const res = await axios.get(`/api/payments/${price}/${days}/${scheme}`);
@@ -36,7 +35,6 @@ const PaymentState = (props) => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: PAYMENT_ERROR,
         payload: error.response.data.msg,
