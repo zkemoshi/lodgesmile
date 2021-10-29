@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const RoomSchema = mongoose.Schema({
   user: {
@@ -13,9 +14,9 @@ const RoomSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  vacancy: {
-    type: Boolean,
-    default: true,
+  checkout: {
+    type: String,
+    default: moment().format('DD-MM-YYYY 00:00:00'),
   },
   date: {
     type: Date,

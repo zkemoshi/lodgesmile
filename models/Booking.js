@@ -16,11 +16,8 @@ const BookingSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  checkOut: {
-    type: Date,
-  },
-  vacancy: {
-    type: Boolean,
+  checkout: {
+    type: String,
   },
 });
 

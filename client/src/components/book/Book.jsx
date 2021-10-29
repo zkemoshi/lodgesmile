@@ -39,12 +39,11 @@ const Book = () => {
   const classes = useStyles();
   const { setAlert } = useContext(alertContext);
   const { rooms, getRooms, loading } = useContext(roomContext);
-  const { getBooking, getCurrentBooking, current } = useContext(bookContext);
+  const { getBooking, current } = useContext(bookContext);
 
   useEffect(() => {
     getRooms();
     getBooking();
-    // getCurrentBooking(today);
     //eslint-disable-next-line
   }, [current, setAlert]);
 

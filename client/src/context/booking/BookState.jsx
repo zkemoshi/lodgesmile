@@ -45,7 +45,6 @@ const BookState = (props) => {
         payload: res.data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: BOOKING_ERROR,
         payload: error.response.data.msg,

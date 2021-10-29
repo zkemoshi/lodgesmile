@@ -5,6 +5,7 @@ import authContext from '../../../context/auth/authContext';
 import paymentContext from '../../../context/payment/paymentContext';
 import Book from '../../book/Book';
 import BookForm from '../../book/BookForm';
+import Alerts from '../../layout/Alerts';
 
 const useStyle = makeStyles({
   box: {
@@ -31,6 +32,8 @@ const Home = () => {
     <Container className={classes.box}>
       <Book />
       <BookForm />
+      <br />
+      <Alerts />
     </Container>
   );
 };

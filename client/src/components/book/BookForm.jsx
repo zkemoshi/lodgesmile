@@ -8,7 +8,10 @@ import {
   CardActions,
   Grid,
   Button,
+  Avatar,
+  Stack,
 } from '@mui/material';
+import { green, red } from '@mui/material/colors';
 import { makeStyles } from '@material-ui/core';
 import moment from 'moment';
 import Change from './Change';
@@ -18,50 +21,27 @@ const useStyles = makeStyles({
     width: '280px',
     marginTop: '1rem',
   },
+  booked: {
+    padding: '2rem',
+    marginTop: '1rem',
+  },
 });
 
 const BookForm = () => {
-  const { addBooking, current, clearCurrent, error, clearErrors } =
+  const { addBooking, current, clearCurrent, clearErrors } =
     useContext(bookContext);
   const { setAlert } = useContext(alertContext);
 
-  const [book, setBooking] = useState({
-    name: '',
-    number: '',
-    price: '',
-    checkOut: null,
-    vacancy: false,
-  });
-
   const [days, setDays] = useState(1);
-
   const date = moment().add(days, 'day').format('DD-MM-YYYY 10:00:00');
-  console.log(date);
   const [checkout, setCheckOut] = useState(date);
-
-  useEffect(() => {
-    // if (current !== null) {
-    //   setBooking({ ...current, vacancy: false });
-    // } else {
-    //   setBooking({
-    //     name: '',
-    //     number: '',
-    //     price: '',
-    //     checkOut: null,
-    //     vacancy: false,
-    //   });
-    // }
-    if (error === 'Room Already Booked') {
-      setAlert(error, 'danger', 2000);
-      clearErrors();
-    }
-  }, [current, error, days]);
+  console.log(current);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBooking(book);
+    addBooking({ ...current, checkout });
     clearAll();
-    setAlert('Booked Successfully', 'danger', 2000);
+    setAlert(`Room ${current.number} booked successfully`, 'success', 2000);
     clearErrors();
   };
 
@@ -74,13 +54,24 @@ const BookForm = () => {
     setCheckOut(date);
   };
   const classes = useStyles();
+
+  if (current && !moment(current.checkout, 'DD-MM-YYYY hh:mm:ss').isBefore()) {
+    setTimeout(() => {
+      clearAll();
+    }, 2000);
+    return (
+      <Card raised className={classes.booked} sx={{ bgcolor: red[200] }}>
+        <Typography>Room {current.number} already Booked!</Typography>
+      </Card>
+    );
+  }
   return (
     <Fragment>
-      {true && (
+      {current && moment(current.checkout, 'DD-MM-YYYY hh:mm:ss').isBefore() && (
         <Card raised className={classes.card}>
           <CardContent>
             <Typography align='center' variant='h6'>
-              Booking...
+              Booking Details
             </Typography>
             <Typography
               sx={{ fontSize: 20 }}
@@ -94,22 +85,41 @@ const BookForm = () => {
               Room Name: {current && current.name}
             </Typography>
             <Typography sx={{ mb: 1.5, fontSize: 20 }} color='text.secondary'>
-              How many Days:
+              <Stack direction='row' spacing={2} sx={{ mb: 1.5 }}>
+                <span>Days</span>
+                <Avatar sx={{ bgcolor: green[500] }} variant='rounded'>
+                  {days}
+                </Avatar>
+              </Stack>
               <Change getCount={getCount} />
             </Typography>
-            <Typography variant='body2'>
-              Check-Out Date:
+            <Typography align='center' variant='body1'>
+              Check-Out
               <br />
-              {checkout}
+            </Typography>
+            <Typography variant='h5' align='center'>
+              {checkout}{' '}
             </Typography>
           </CardContent>
           <CardActions>
-            <Grid container>
+            <Grid container align='center' sx={{ mb: 1.5 }}>
               <Grid item xs={6}>
-                <Button size='small'>Cancel</Button>
+                <Button
+                  size='small'
+                  variant='outlined'
+                  color='secondary'
+                  onClick={clearAll}
+                >
+                  Cancel
+                </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button size='small' color='primary'>
+                <Button
+                  size='small'
+                  variant='outlined'
+                  color='primary'
+                  onClick={handleSubmit}
+                >
                   Confirm
                 </Button>
               </Grid>

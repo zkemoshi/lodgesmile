@@ -89,7 +89,7 @@ const Layout = ({ children }) => {
       path: '/auth/home',
     },
     {
-      text: 'Create Room',
+      text: 'Rooms',
       icon: <AddCircleOutlineOutlined color='primary' />,
       path: '/auth/rooms',
     },
@@ -122,14 +122,9 @@ const Layout = ({ children }) => {
 
   const attendantMenu = [
     {
-      text: 'Create Receipt',
+      text: 'Home',
       icon: <SubjectOutlined color='secondary' />,
       path: '/auth/home',
-    },
-    {
-      text: 'View Receipts',
-      icon: <ReceiptIcon color='primary' />,
-      path: '/auth/viewReceipts',
     },
 
     {

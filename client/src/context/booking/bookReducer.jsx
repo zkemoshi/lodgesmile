@@ -53,7 +53,7 @@ const BookReducer = (state, action) => {
     case CLEAR_BOOKING:
       return {
         ...state,
-        rooms: null,
+        booking: null,
         error: null,
         current: null,
       };
