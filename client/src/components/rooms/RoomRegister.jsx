@@ -4,32 +4,32 @@ import React, { useContext, useState, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import Alerts from '../layout/Alerts';
 import roomContext from '../../context/room/roomContext';
-import NumberFormat from 'react-number-format';
+// import NumberFormat from 'react-number-format';
 
-const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
-  props,
-  ref
-) {
-  const { onChange, ...other } = props;
+// const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+//   props,
+//   ref
+// ) {
+//   const { onChange, ...other } = props;
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-      prefix='TZS '
-    />
-  );
-});
+//   return (
+//     <NumberFormat
+//       {...other}
+//       getInputRef={ref}
+//       onValueChange={(values) => {
+//         onChange({
+//           target: {
+//             name: props.name,
+//             value: values.value,
+//           },
+//         });
+//       }}
+//       thousandSeparator
+//       isNumericString
+//       prefix='TZS '
+//     />
+//   );
+// });
 
 const useStyle = makeStyles({
   box: {
@@ -58,7 +58,7 @@ const RoomRegister = (props) => {
   const [room, setRoom] = useState({
     name: '',
     number: '',
-    price: '',
+   
   });
 
   useEffect(() => {
@@ -68,13 +68,13 @@ const RoomRegister = (props) => {
       setRoom({
         name: '',
         number: '',
-        price: '',
+       
       });
     }
     //eslint-disable-next-line
   }, [error, current, rooms]);
 
-  const { name, number, price } = room;
+  const { name, number } = room;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,7 +85,6 @@ const RoomRegister = (props) => {
       addRoom({
         name,
         number,
-        price,
       });
     }
     clearAll();
@@ -126,7 +125,7 @@ const RoomRegister = (props) => {
           onChange={(e) => setRoom({ ...room, number: e.target.value })}
         />
 
-        <TextField
+        {/* <TextField
           value={price}
           onChange={(e) => setRoom({ ...room, price: e.target.value })}
           InputProps={{
@@ -138,7 +137,7 @@ const RoomRegister = (props) => {
           placeholder='Enter Room Price'
           fullWidth
           required
-        />
+        /> */}
 
         <Button
           type='submit'

@@ -22,6 +22,7 @@ import moment from 'moment';
 
 import authContext from '../../context/auth/authContext';
 import { Avatar, Chip } from '@mui/material';
+import logo from './logo.png';
 
 const drawerWidth = 200;
 
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => {
       background: '#f4f4f4',
     },
     title: {
-      padding: theme.spacing(3),
+      padding: theme.spacing(0),
     },
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -208,8 +209,8 @@ const Layout = ({ children }) => {
         classes={{ paper: classes.drawerPaper }}
       >
         <div>
-          <Typography variant='h5' className={classes.title}>
-            Efd Risiti
+          <Typography className={classes.title}>
+            <img src={logo} alt='logo' width={150} />
           </Typography>
         </div>
 

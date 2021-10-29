@@ -4,11 +4,13 @@ import React, { useContext, useEffect } from 'react';
 import authContext from '../../../context/auth/authContext';
 import paymentContext from '../../../context/payment/paymentContext';
 import Book from '../../book/Book';
+import BookForm from '../../book/BookForm';
 
 const useStyle = makeStyles({
   box: {
     // minHeight: '100vh',
     display: 'flex',
+    flexDirection: 'column',
     gap: 2,
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,6 +30,7 @@ const Home = () => {
   return (
     <Container className={classes.box}>
       <Book />
+      <BookForm />
     </Container>
   );
 };

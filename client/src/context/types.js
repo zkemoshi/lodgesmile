@@ -40,3 +40,12 @@ export const ROOM_ERROR = 'ROOM_ERROR';
 export const DELETE_ROOM = 'DELETE_ROOM';
 export const UPDATE_ROOM = 'UPDATE_ROOM';
 export const FILTER_ROOMS = 'FILTER_ROOMS';
+
+//Booking
+export const ADD_BOOKING = 'ADD_BOOKING';
+export const GET_BOOKING = 'GET_BOOKING';
+export const CLEAR_BOOKING = 'CLEAR_BOOKING';
+export const BOOKING_ERROR = 'BOOKING_ERROR';
+export const DELETE_BOOKING = 'DELETE_BOOKING';
+export const UPDATE_BOOKING = 'UPDATE_BOOKING';
+export const GET_CURRENT_BOOKING = 'GET_CURRENT_BOOKING';

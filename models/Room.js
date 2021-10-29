@@ -13,9 +13,9 @@ const RoomSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  price: {
-    type: Number,
-    required: true,
+  vacancy: {
+    type: Boolean,
+    default: true,
   },
   date: {
     type: Date,

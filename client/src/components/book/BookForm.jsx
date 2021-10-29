@@ -1,13 +1,29 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react';
-import BookContext from '../../context/booking/bookContext';
-import AlertContext from '../../context/alert/alertContext';
+import bookContext from '../../context/booking/bookContext';
+import alertContext from '../../context/alert/alertContext';
+import {
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  Grid,
+  Button,
+} from '@mui/material';
+import { makeStyles } from '@material-ui/core';
+import moment from 'moment';
+import Change from './Change';
+
+const useStyles = makeStyles({
+  card: {
+    width: '280px',
+    marginTop: '1rem',
+  },
+});
 
 const BookForm = () => {
-  const bookContext = useContext(BookContext);
-  const alertContext = useContext(AlertContext);
-
-  const { addBooking, current, clearCurrent, error, clearErrors } = bookContext;
-  const { setAlert } = alertContext;
+  const { addBooking, current, clearCurrent, error, clearErrors } =
+    useContext(bookContext);
+  const { setAlert } = useContext(alertContext);
 
   const [book, setBooking] = useState({
     name: '',
@@ -17,25 +33,29 @@ const BookForm = () => {
     vacancy: false,
   });
 
+  const [days, setDays] = useState(1);
+
+  const date = moment().add(days, 'day').format('DD-MM-YYYY 10:00:00');
+  console.log(date);
+  const [checkout, setCheckOut] = useState(date);
+
   useEffect(() => {
-    if (current !== null) {
-      setBooking({ ...current, vacancy: false });
-    } else {
-      setBooking({
-        name: '',
-        number: '',
-        price: '',
-        checkOut: null,
-        vacancy: false,
-      });
-    }
+    // if (current !== null) {
+    //   setBooking({ ...current, vacancy: false });
+    // } else {
+    //   setBooking({
+    //     name: '',
+    //     number: '',
+    //     price: '',
+    //     checkOut: null,
+    //     vacancy: false,
+    //   });
+    // }
     if (error === 'Room Already Booked') {
       setAlert(error, 'danger', 2000);
       clearErrors();
     }
-  }, [current, error]);
-
-  const { name, number, price, checkOut } = book;
+  }, [current, error, days]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,72 +68,54 @@ const BookForm = () => {
   const clearAll = () => {
     clearCurrent();
   };
+
+  const getCount = (count) => {
+    setDays(count);
+    setCheckOut(date);
+  };
+  const classes = useStyles();
   return (
     <Fragment>
-      {current && (
-        <form onSubmit={handleSubmit}>
-          <div className='card bg-light'>
-            <input
-              type='text'
-              placeholder='Room Name'
-              name='name'
-              value={name}
-              required
-              disabled
-              onChange={(e) => setBooking({ ...book, name: e.target.value })}
-            />
-            <input
-              type='number'
-              placeholder='Room Number'
-              name='number'
-              value={number}
-              required
-              disabled
-              onChange={(e) => setBooking({ ...book, number: e.target.value })}
-            />
-            <input
-              type='number'
-              placeholder='Room Price'
-              name='price'
-              value={price}
-              required
-              disabled
-              onChange={(e) => setBooking({ ...book, price: e.target.value })}
-            />
-            <input
-              type='hidden'
-              name='vacancy'
-              value='false'
-              required
-              disabled
-              onChange={(e) => setBooking({ ...book, vacancy: e.target.value })}
-            />
-            <label htmlFor='Checkout'>Check-Out</label>
-            <input
-              type='datetime-local'
-              name='checkOut'
-              value={checkOut}
-              required
-              onChange={(e) =>
-                setBooking({ ...book, checkOut: e.target.value })
-              }
-            />
-            <div>
-              <input
-                type='submit'
-                value='Confirm Booking'
-                className='btn btn-primary btn-block'
-              />
-            </div>
-            {current && (
-              <div>
-                <button className='btn btn-danger btn-block' onClick={clearAll}>
-                  Cancel Booking
-                </button>
-              </div>
-            )}
-          </div>
-        </form>
+      {true && (
+        <Card raised className={classes.card}>
+          <CardContent>
+            <Typography align='center' variant='h6'>
+              Booking...
+            </Typography>
+            <Typography
+              sx={{ fontSize: 20 }}
+              color='text.secondary'
+              gutterBottom
+            >
+              Room No. {current && current.number}
+            </Typography>
+
+            <Typography sx={{ mb: 1.5, fontSize: 20 }} color='text.secondary'>
+              Room Name: {current && current.name}
+            </Typography>
+            <Typography sx={{ mb: 1.5, fontSize: 20 }} color='text.secondary'>
+              How many Days:
+              <Change getCount={getCount} />
+            </Typography>
+            <Typography variant='body2'>
+              Check-Out Date:
+              <br />
+              {checkout}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Grid container>
+              <Grid item xs={6}>
+                <Button size='small'>Cancel</Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button size='small' color='primary'>
+                  Confirm
+                </Button>
+              </Grid>
+            </Grid>
+          </CardActions>
+        </Card>
       )}
     </Fragment>
   );

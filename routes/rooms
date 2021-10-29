@@ -27,13 +27,12 @@ router.get('/', auth, async (req, res) => {
 // @desc    Add new room
 // @access  Private
 router.post('/', auth, async (req, res) => {
-  const { name, number, price } = req.body;
+  const { name, number } = req.body;
 
   try {
     const newRoom = new Room({
       name,
       number,
-      price,
       user: req.user.id,
     });
 
@@ -50,13 +49,12 @@ router.post('/', auth, async (req, res) => {
 // @desc    Update room
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-  const { name, number, price } = req.body;
+  const { name, number } = req.body;
 
   // Build room object
   const roomFields = {};
   if (name) roomFields.name = name;
   if (number) roomFields.number = number;
-  if (price) roomFields.price = price;
 
   try {
     let room = await Room.findById(req.params.id);
