@@ -58,10 +58,13 @@ const BookForm = () => {
   if (current && !moment(current.checkout, 'DD-MM-YYYY hh:mm:ss').isBefore()) {
     setTimeout(() => {
       clearAll();
-    }, 2000);
+    }, 3000);
     return (
       <Card raised className={classes.booked} sx={{ bgcolor: red[200] }}>
-        <Typography>Room {current.number} already Booked!</Typography>
+        <Typography>
+          Room {current.number} is already Booked for {days} days until{' '}
+          {checkout}
+        </Typography>
       </Card>
     );
   }
