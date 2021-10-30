@@ -116,9 +116,7 @@ router.get('/', auth, async (req, res) => {
         tin,
         expiredAt,
       };
-      // const collect = { ...attendant, ...user1 };
       res.json(user1);
-      console.log(user1);
     } else {
       const user = await User.findById(req.user.id).select('-password');
       res.json(user);

@@ -11,11 +11,8 @@ import {
   IconButton,
   Grid,
 } from '@material-ui/core';
-import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons';
 import MenuIcon from '@mui/icons-material/Menu';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import moment from 'moment';
@@ -23,6 +20,7 @@ import moment from 'moment';
 import authContext from '../../context/auth/authContext';
 import { Avatar, Chip } from '@mui/material';
 import logo from './logo.png';
+import { menuItems, attendantMenu } from './Menu';
 
 const drawerWidth = 200;
 
@@ -81,58 +79,6 @@ const Layout = ({ children }) => {
     loadUser();
     // eslint-disable-next-line
   }, []);
-
-  const menuItems = [
-    {
-      text: 'Home',
-      icon: <AddCircleOutlineOutlined color='primary' />,
-      path: '/auth/home',
-    },
-    {
-      text: 'Rooms',
-      icon: <AddCircleOutlineOutlined color='primary' />,
-      path: '/auth/rooms',
-    },
-    {
-      text: 'Attendant',
-      icon: <AddCircleOutlineOutlined color='primary' />,
-      path: '/auth/attendant',
-    },
-    {
-      text: 'Pricing',
-      icon: <AssessmentIcon color='primary' />,
-      path: '/auth/pricing',
-    },
-    {
-      text: 'Dashboard',
-      icon: <AssessmentIcon color='primary' />,
-      path: '/auth/dashboard',
-    },
-    {
-      text: 'Admin',
-      icon: <AssessmentIcon color='primary' />,
-      path: '/admin',
-    },
-    {
-      text: 'Logout',
-      icon: <LogoutIcon color='primary' />,
-      path: '/auth/logout',
-    },
-  ];
-
-  const attendantMenu = [
-    {
-      text: 'Home',
-      icon: <SubjectOutlined color='secondary' />,
-      path: '/auth/home',
-    },
-
-    {
-      text: 'Logout',
-      icon: <LogoutIcon color='primary' />,
-      path: '/auth/logout',
-    },
-  ];
 
   const handleList = (path) => {
     if (path === '/auth/logout') {
