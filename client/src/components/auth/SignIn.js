@@ -13,14 +13,10 @@ import {
   Box,
   Typography,
   Container,
-  Paper,
-  Divider,
-  Chip,
 } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailIcon from '@mui/icons-material/Email';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../layout/logo.png';
 
@@ -83,24 +79,21 @@ export default function SignIn() {
         <CssBaseline />
         <Grid container sx={{ mt: 2 }} alignItems='center'>
           <Grid item xs={6}>
-            <Typography className={classes.logo}>
+            <Link to='/' className={classes.logo}>
               <img src={logo} alt='logo' width={150} />
-            </Typography>
+            </Link>
           </Grid>
           <Grid item xs={6} align='right'>
-            <Button variant='outlined' color='warning'>
-              GET STARTED
+            <Button
+              variant='outlined'
+              color='warning'
+              onClick={() => history.push('/register')}
+            >
+              SIGN UP
             </Button>
           </Grid>
         </Grid>
-        <Typography
-          align='center'
-          variant='h2'
-          className={classes.title}
-          sx={{ color: '#ef964c', fontSize: '34px' }}
-        >
-          Manage Your Lodge on The Go
-        </Typography>
+
         <Box
           sx={{
             marginTop: 4,
@@ -173,47 +166,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Grid className='details' sx={{ mt: 3 }}>
-          <Paper sx={{ p: 2, bgcolor: '#b154c4', color: 'white' }}>
-            <Typography align='center'>
-              Our service will enable you to easily get notified when a customer
-              book a room.
-            </Typography>
-          </Paper>
-          <Paper sx={{ mt: 2, p: 2, bgcolor: '#3A9AC5', color: 'white' }}>
-            <Typography align='center'>
-              Get detailed report to assist in making informed business decision
-            </Typography>
-          </Paper>
-        </Grid>
-        <Button
-          fullWidth
-          variant='outlined'
-          color='warning'
-          sx={{ mt: 2.5, mb: 3.5 }}
-        >
-          GET STARTED
-        </Button>
-        <Divider>
-          <Chip color='primary' label='Contact Us' />
-        </Divider>
-        <Grid sx={{ mb: 5 }} className={classes.contact}>
-          <Chip
-            label='+255755059683'
-            component='a'
-            href='#basic-chip'
-            variant='outlined'
-            clickable
-            color='primary'
-            icon={<WhatsAppIcon />}
-          />
-          <Chip
-            icon={<EmailIcon />}
-            label='info@lodge.co.tz'
-            variant='outlined'
-            color='warning'
-          />
-        </Grid>
       </Container>
     </ThemeProvider>
   );

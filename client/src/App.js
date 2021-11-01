@@ -15,6 +15,7 @@ import Privacy from './components/pages/Privacy';
 import Terms from './components/pages/Terms';
 import RoomState from './context/room/RoomState';
 import BookState from './context/booking/BookState';
+import Landing from './components/auth/Landing';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -31,7 +32,8 @@ const App = () => {
                   <Switch>
                     <PrivateRoute path='/auth' component={AuthPages} />
                     <PrivateRoute path='/admin' component={Dashboard} />
-                    <Route exact path='/' component={SignIn} />
+                    <Route exact path='/' component={Landing} />
+                    <Route exact path='/login' component={SignIn} />
                     <Route exact path='/register' component={SignUp} />
                     <Route exact path='/privacy' component={Privacy} />
                     <Route exact path='/terms' component={Terms} />
