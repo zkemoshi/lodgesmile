@@ -20,7 +20,7 @@ import moment from 'moment';
 import authContext from '../../context/auth/authContext';
 import { Avatar, Chip } from '@mui/material';
 import logo from './logo.png';
-import { menuItems, attendantMenu } from './Menu';
+import { menuItems, menuAdmin, attendantMenu } from './Menu';
 
 const drawerWidth = 200;
 
@@ -80,10 +80,13 @@ const Layout = ({ children }) => {
     // eslint-disable-next-line
   }, []);
 
+  const menu =
+    user && user.email === 'zkemoshi@gmail.com' ? menuAdmin : menuItems;
+
   const handleList = (path) => {
     if (path === '/auth/logout') {
       logout();
-      history.push('/');
+      history.push('/login');
     } else {
       history.push(path);
     }
@@ -175,7 +178,7 @@ const Layout = ({ children }) => {
           </List>
         ) : (
           <List>
-            {menuItems.map((item) => (
+            {menu.map((item) => (
               <ListItem
                 divider
                 key={item.text}

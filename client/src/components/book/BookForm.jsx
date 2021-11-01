@@ -1,6 +1,7 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import bookContext from '../../context/booking/bookContext';
 import alertContext from '../../context/alert/alertContext';
+import authContext from '../../context/auth/authContext';
 import {
   Card,
   CardContent,
@@ -31,6 +32,7 @@ const BookForm = () => {
   const { addBooking, current, clearCurrent, clearErrors } =
     useContext(bookContext);
   const { setAlert } = useContext(alertContext);
+  const { user } = useContext(authContext);
 
   const [days, setDays] = useState(1);
   const date = moment().add(days, 'day').format('DD-MM-YYYY 10:00:00');
@@ -39,10 +41,18 @@ const BookForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBooking({ ...current, checkout });
-    clearAll();
-    setAlert(`Room ${current.number} booked successfully`, 'success', 2000);
-    clearErrors();
+    if (
+      user &&
+      moment(user.expiredAt, 'DD-MM-YYYY').diff(moment(), 'days') > 0
+    ) {
+      addBooking({ ...current, checkout });
+      clearAll();
+      setAlert(`Room ${current.number} booked successfully`, 'success', 2000);
+      clearErrors();
+    } else {
+      clearAll();
+      setAlert(`Your account has expired, kindly renew`, 'error', 2000);
+    }
   };
 
   const clearAll = () => {

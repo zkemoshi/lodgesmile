@@ -64,12 +64,14 @@ const RoomsItems = ({ room }) => {
                 className={classes.cursor}
                 onClick={() => setCurrent(room)}
               />
+              Edit{'  '}
               <DeleteIcon
                 color='error'
                 button
                 className={classes.cursor}
                 onClick={() => deleteRoom(_id)}
               />
+              Remove
             </Typography>
           </Grid>
         </AccordionDetails>

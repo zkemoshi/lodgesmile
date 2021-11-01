@@ -20,11 +20,9 @@ import BedroomParentRoundedIcon from '@mui/icons-material/BedroomParentRounded';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import ReviewsRoundedIcon from '@mui/icons-material/ReviewsRounded';
 import BookmarksRoundedIcon from '@mui/icons-material/BookmarksRounded';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../layout/logo.png';
-
 
 const theme = createTheme();
 
@@ -105,7 +103,7 @@ export default function Landing() {
             </ListItemAvatar>
             <ListItemText
               primary='Step 1'
-              secondary='Owner add rooms to monitors'
+              secondary='Lodge owner add rooms to monitors and creates an attendant (mhudumu).'
             />
           </ListItem>
           <ListItem>
@@ -116,7 +114,7 @@ export default function Landing() {
             </ListItemAvatar>
             <ListItemText
               primary='Step 2:'
-              secondary='Attendant records a booked room'
+              secondary='Attendant adds booking records as customers arrives'
             />
           </ListItem>
           <ListItem>
@@ -127,67 +125,21 @@ export default function Landing() {
             </ListItemAvatar>
             <ListItemText
               primary='Step 3'
-              secondary='Owner get notified of booked room'
+              secondary='Lodge owner get notified of booked room'
             />
           </ListItem>
         </List>
-        {/* <Card sx={{ mb: 2 }}>
-          <CardMedia
-            component='img'
-            height='140'
-            image={step1}
-            alt='green iguana'
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='div'>
-              Step 1
-            </Typography>
-            <Typography variant='body1' color='text.secondary'>
-              Add rooms to monitors
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ mb: 2 }}>
-          <CardMedia
-            component='img'
-            height='140'
-            image={step2}
-            alt='green iguana'
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='div'>
-              Step 2
-            </Typography>
-            <Typography variant='body1' color='text.secondary'>
-              Book a room marking it accupied as customers request.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card sx={{ mb: 2 }}>
-          <CardMedia
-            component='img'
-            height='140'
-            image={step3}
-            alt='green iguana'
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='div'>
-              Step 3
-            </Typography>
-            <Typography variant='body1' color='text.secondary'>
-              Get notifications of booked rooms immediately
-            </Typography>
-          </CardContent>
-        </Card> */}
-        <Button
-          fullWidth
-          variant='outlined'
-          color='warning'
-          onClick={() => history.push('/login')}
-          sx={{ mt: 2.5, mb: 3.5 }}
-        >
-          GET STARTED
-        </Button>
+        <Grid align='center'>
+          <Button
+            variant='outlined'
+            alignItems='center'
+            color='warning'
+            onClick={() => history.push('/login')}
+            sx={{ mt: 2.5, mb: 3.5 }}
+          >
+            GET STARTED
+          </Button>
+        </Grid>
         <Divider>
           <Chip color='primary' label='Contact Us' />
         </Divider>
@@ -195,7 +147,7 @@ export default function Landing() {
           <Chip
             label='+255755059683'
             component='a'
-            href='#basic-chip'
+            href='https://wa.me/message/U7QLQ42VWHRUJ1'
             variant='outlined'
             clickable
             color='primary'
@@ -203,7 +155,7 @@ export default function Landing() {
           />
           <Chip
             icon={<EmailIcon />}
-            label='info@lodge.co.tz'
+            label='sales@lodge.co.tz'
             variant='outlined'
             color='warning'
           />

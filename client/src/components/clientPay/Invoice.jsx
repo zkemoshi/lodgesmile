@@ -111,7 +111,7 @@ const Invoice = () => {
         <Grid item xs={6}>
           <Typography className={classes.title}>Item</Typography>
           <Typography>
-            {current && `${current.days} days subscription for Efd`}{' '}
+            {current && `${current.days} days subscription `}{' '}
           </Typography>
         </Grid>
         <Grid item xs={2} align='center'>
@@ -138,7 +138,7 @@ const Invoice = () => {
         </Grid>
       </Grid>
       <Typography variant='paragraph'>
-        Terms and Condition as described on www.efdrisiti.com
+        Terms and Condition as described on www.lodge.co.tz
       </Typography>
       <Grid align='center' sx={{ padding: '1rem' }}>
         <Button

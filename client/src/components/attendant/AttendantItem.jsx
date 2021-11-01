@@ -58,13 +58,15 @@ const AttendantItem = ({ attendant }) => {
                 button
                 className={classes.cursor}
                 onClick={() => setCurrent(attendant)}
-              />
+              />{' '}
+              Edit{' '}
               <DeleteIcon
                 color='error'
                 button
                 className={classes.cursor}
                 onClick={() => deleteAttendant(_id)}
-              />
+              />{' '}
+              Delete
             </Typography>
           </Grid>
         </AccordionDetails>
