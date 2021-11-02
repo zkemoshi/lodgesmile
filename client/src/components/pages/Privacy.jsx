@@ -10,6 +10,9 @@ const useStyles = makeStyles({
   p: {
     textAlign: 'justify',
   },
+  btn: {
+    marginRight: '10px',
+  },
 });
 
 const Privacy = () => {
@@ -24,9 +27,14 @@ const Privacy = () => {
   return (
     <Container>
       <div className='container'>
-        <Button variant='outlined'>
+        <Button variant='outlined' className={classes.btn}>
           <Link to='/register' className={classes.link}>
-            Back
+            Sign Up
+          </Link>
+        </Button>
+        <Button variant='outlined'>
+          <Link to='/' className={classes.link}>
+            Home
           </Link>
         </Button>
         <div className='privacy'>

@@ -12,6 +12,7 @@ import {
   Container,
   ListItemText,
   Divider,
+  Stack,
   Chip,
   ListItemAvatar,
 } from '@mui/material';
@@ -160,6 +161,16 @@ export default function Landing() {
             color='warning'
           />
         </Grid>
+        <Stack
+          sx={{ mb: 3 }}
+          direction='row'
+          justifyContent='space-around'
+          divider={<Divider orientation='vertical' flexItem />}
+          spacing={2}
+        >
+          <Link to='/term'>Terms and Condition</Link>
+          <Link to='/privacy'>Privacy policy</Link>
+        </Stack>
       </Container>
     </ThemeProvider>
   );
