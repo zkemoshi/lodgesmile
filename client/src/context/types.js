@@ -49,3 +49,7 @@ export const BOOKING_ERROR = 'BOOKING_ERROR';
 export const DELETE_BOOKING = 'DELETE_BOOKING';
 export const UPDATE_BOOKING = 'UPDATE_BOOKING';
 export const GET_CURRENT_BOOKING = 'GET_CURRENT_BOOKING';
+
+//Admin
+export const GET_USERS = 'GET_USERS';
+export const USERS_ERROR = 'USERS_ERROR';

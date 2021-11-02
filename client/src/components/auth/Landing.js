@@ -82,7 +82,7 @@ export default function Landing() {
         >
           Our service is to help you manage and monitor your lodge activity
           where ever you are. Keep track of customers who have booked at any
-          moment through online booking.
+          moment through our platform.
         </Typography>
 
         <Divider sx={{ my: 2 }} />

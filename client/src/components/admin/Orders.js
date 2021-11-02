@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -7,8 +7,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
+import moment from 'moment';
 
-import authContext from '../../context/auth/authContext';
+import adminContext from '../../context/admin/adminContext';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -70,10 +71,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Orders() {
   const classes = useStyles();
-  const { user } = useContext(authContext);
+  const { users, getUsers } = useContext(adminContext);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>Users</Title>
       <Table size='small'>
         <TableHead>
           <TableRow>
@@ -85,13 +91,13 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align='right'>{row.amount}</TableCell>
+          {users.map((row) => (
+            <TableRow key={row._id}>
+              <TableCell>{moment(row.date).format('DD-MM-YYYY')}</TableCell>
+              <TableCell>{row.firstName}</TableCell>
+              <TableCell>{row.email}</TableCell>
+              <TableCell>{row.phone}</TableCell>
+              <TableCell align='right'>{row.expiredAt}</TableCell>
             </TableRow>
           ))}
         </TableBody>

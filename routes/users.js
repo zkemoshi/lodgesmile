@@ -38,6 +38,25 @@ router.post('/', async (req, res) => {
     // Save to DB
     await user.save();
 
+    // Sending Email after Registering
+
+    sgMail.setApiKey(emailKey);
+    const msg = {
+      to: [`zkemoshi@gmail.com`, `${email}`],
+      from: 'sales@codewithzaka.online',
+      subject: `Thank You, ${firstName} ${lastName} for registering with Us`,
+      html: `Our service is to help you manage and monitor your lodge activity where ever you are. Keep track of customers who have booked at any moment through our platform. <br/> Welcome.`,
+    };
+
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log('Email sent');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     // JWT Payload
     const payload = {
       user: {
@@ -62,5 +81,6 @@ router.post('/', async (req, res) => {
     res.status(500).res.send('Server Error...');
   }
 });
+
 
 module.exports = router;

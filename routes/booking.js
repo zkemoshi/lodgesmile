@@ -9,6 +9,7 @@ const { body, validationResult } = require('express-validator');
 // Model
 const Booking = require('../models/Booking');
 const Room = require('../models/Room');
+const User = require('../models/User');
 
 // ***** Book CRUD ****
 
@@ -19,7 +20,8 @@ router.post('/', auth, async (req, res) => {
   const { _id, name, number, checkout } = req.body;
 
   // to send email to user
-  // const email = req.user.email;
+  const email = req.user.email;
+  console.log(email);
 
   try {
     // Create a New Booking
@@ -40,6 +42,25 @@ router.post('/', auth, async (req, res) => {
     );
     // Sending response from DB
     res.json(book);
+
+    // Sending Email after Booking to owner
+
+    sgMail.setApiKey(emailKey);
+    const msg = {
+      to: [`${email}`],
+      from: 'sales@codewithzaka.online',
+      subject: `Room ${number} Booked`,
+      html: `Room ${name} booked until ${checkout}`,
+    };
+
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log('Email sent');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } catch (error) {
     res.status(500).send('Server Error');
   }
